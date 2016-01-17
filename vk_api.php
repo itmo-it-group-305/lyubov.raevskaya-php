@@ -1,3 +1,4 @@
+
 <?php
 /**
  * Created by PhpStorm.
@@ -6,4 +7,38 @@
  * Time: 13:50
  */
 
-$content = http_build_query()
+$url = 'https://api.vk.com/method/friends.get?';
+$data = array(
+    'user_id' => 689643,
+    'fields' => 'nickname,city,photo_50,online',
+    'count' => 20,
+    );
+//user_id=689643&fields=nickname,city,photo_50,online';
+$content = $url.http_build_query($data);
+$get = file_get_contents($content);
+//echo $get;
+$friends = json_decode($get);
+//echo $friends;
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+
+
+<?php
+foreach ($friends as $post): ?>
+    <section>
+        <h2>My friends</h2>
+        <img src="<?= $post['photo_50'] ?>">
+        <p> <?= $post['first_name'.'last_name']?></p>
+        <p><?= $post['city']?></p>
+
+    </section>
+<?php endforeach; ?>
+
+</body>
+</html>
