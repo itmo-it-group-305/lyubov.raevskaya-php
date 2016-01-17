@@ -10,14 +10,16 @@
 $url = 'https://api.vk.com/method/friends.get?';
 $data = array(
     'user_id' => 689643,
-    'fields' => 'nickname,city,photo_50,online',
+    'fields' => 'bdate,city,photo_50,online',
     'count' => 20,
     );
 //user_id=689643&fields=nickname,city,photo_50,online';
 $content = $url.http_build_query($data);
 $get = file_get_contents($content);
-//echo $get;
+echo $get;
 $friends = json_decode($get);
+$friends['response'][0];
+$post = true;
 //echo $friends;
 ?>
 
@@ -32,7 +34,7 @@ $friends = json_decode($get);
 <?php
 foreach ($friends as $post): ?>
     <section>
-        <h2>My friends</h2>
+        <h2>My friends:</h2>
         <img src="<?= $post['photo_50'] ?>">
         <p> <?= $post['first_name'.'last_name']?></p>
         <p><?= $post['city']?></p>
