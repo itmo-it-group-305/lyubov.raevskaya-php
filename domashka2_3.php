@@ -7,7 +7,7 @@
  */
 
 $mas = array(1,2,3,8,14,89,45);
-for($i=count($mas)-1; $i>=0; $i--) {$newMas[] = $mas[$i];}
+for($i=count($mas)-1; $i>=0; $i--) {$newMas[] = $mas[$i];} # @fixme: нельзя использовать вспомгательный массив ($newMas[]) =)
 echo '['.implode(',', $newMas).']';
 
 
