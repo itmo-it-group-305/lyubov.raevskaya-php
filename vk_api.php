@@ -19,7 +19,7 @@ $content = $url.http_build_query($data);
 $get = file_get_contents($content);
 echo $get;
 $friends = json_decode($get, true);
-$friends['response'][0]['uid'];
+$friends = $friends['response']['items'];
 //$post = true;
 //echo $friends;
 ?>
@@ -41,7 +41,7 @@ foreach ($friends as $post): ?>
         <p> <?= $post['first_name']?></p>
         <p> <?= $post['last_name']?></p>
         <p> <?= $post['bdate']?></p>
-        <p><?= $post['city']?></p>
+        <p> <?= $post['city']?></p>
     </section>
 
 <?php endforeach; ?>
